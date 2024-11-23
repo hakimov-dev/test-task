@@ -3,7 +3,7 @@
     <div v-if="!usersLoading" class="mt-[10vh]">
       <div
         id="search-section"
-        class="w-[60%] mx-auto flex items-center justify-center"
+        class="md:w-[60%] w-[80%] mx-auto flex items-center justify-center"
       >
         <CustomInput class="w-[80%]" v-model="search" />
       </div>
