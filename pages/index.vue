@@ -1,13 +1,18 @@
 <template>
-  <div class="mt-[10vh]">
-    <div
-      id="search-section"
-      class="w-[60%] mx-auto flex items-center justify-center"
-    >
-      <CustomInput class="w-[80%]" v-model="search" />
+  <div>
+    <div v-if="!usersLoading" class="mt-[10vh]">
+      <div
+        id="search-section"
+        class="w-[60%] mx-auto flex items-center justify-center"
+      >
+        <CustomInput class="w-[80%]" v-model="search" />
+      </div>
+      <div class="my-12">
+        <CustomUsersTable :users="users" />
+      </div>
     </div>
-    <div class="my-12">
-      <CustomUsersTable :users="users" />
+    <div v-else>
+      <CustomLoading />
     </div>
   </div>
 </template>
@@ -21,6 +26,8 @@ const search = ref("");
 
 const users = ref([]);
 const originalUsers = ref([]);
+
+const usersLoading = ref(true);
 
 const handleSearch = () => {
   if (search.value.trim() === "") {
@@ -40,6 +47,7 @@ const getData = () => {
     if (res) {
       users.value = res.data;
       originalUsers.value = res.data;
+      usersLoading.value = false;
     }
   });
 };
