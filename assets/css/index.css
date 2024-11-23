@@ -11,19 +11,6 @@ body {
   font-family: "Inter", sans-serif; /* Inspired by Tailwind CSS's typeface */
 }
 
-/* Example styles for various elements */
-.card {
-  background-color: var(--card-background-color);
-  border: 1px solid var(--border-color);
-  padding: 1rem;
-  border-radius: 0.5rem;
-}
-
-a {
-  color: var(--primary-color);
-  text-decoration: none;
-}
-
-a:hover {
-  color: var(--secondary-color);
+.container {
+  max-width: 1340px;
 }
