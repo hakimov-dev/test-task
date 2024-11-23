@@ -43,6 +43,27 @@
         </tr>
       </thead>
       <tbody>
+        <tr v-if="users.length === 0">
+          <td colspan="7" class="p-6 text-[var(--text-muted-color)]">
+            <div class="flex items-center justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-8 h-8 mr-2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9.75 9V7.5a3.75 3.75 0 1 1 7.5 0V9m-9 4.5h10.5m-11.25 3h12"
+                />
+              </svg>
+              No Data Available
+            </div>
+          </td>
+        </tr>
         <tr
           v-for="user in users"
           :key="user.id"
@@ -101,21 +122,6 @@
                   d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                 />
               </svg>
-
-              <!-- <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6 text-[var(--secondary-color)] hover:text-[var(--accent-color)] transition duration-300"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15 12m0 0a3 3 0 11-6 0 3 3 0 016 0zm-9 0a9 9 0 1118 0 9 9 0 01-18 0z"
-                />
-              </svg> -->
             </NuxtLink>
           </td>
         </tr>
@@ -134,7 +140,3 @@ const props = defineProps({
   },
 });
 </script>
-
-<style scoped>
-/* Optional: Additional table styling, but Tailwind covers most of it */
-</style>

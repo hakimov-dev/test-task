@@ -4,15 +4,7 @@
       id="search-section"
       class="w-[60%] mx-auto flex items-center justify-center"
     >
-      <CustomInput class="w-[80%]" v-model="search" @search="handleSearch" />
-      <transition name="fade" appear>
-        <CustomBtn
-          v-if="search.length > 0"
-          @click="handleSearch"
-          class="ml-2 transition duration-300 ease-in-out transform hover:scale-105 hover:bg-[var(--accent-color)]"
-          >search</CustomBtn
-        >
-      </transition>
+      <CustomInput class="w-[80%]" v-model="search" />
     </div>
     <div class="my-12">
       <CustomUsersTable :users="users" />
@@ -28,15 +20,26 @@ const usersAPI = new UsersService();
 const search = ref("");
 
 const users = ref([]);
+const originalUsers = ref([]);
 
 const handleSearch = () => {
-  console.log("Searching for:", search.value);
+  if (search.value.trim() === "") {
+    users.value = originalUsers.value;
+  } else {
+    const query = search.value.toLowerCase();
+    users.value = originalUsers.value.filter(
+      (user) =>
+        user.name.toLowerCase().includes(query) ||
+        user.username.toLowerCase().includes(query) ||
+        user.email.toLowerCase().includes(query)
+    );
+  }
 };
-
 const getData = () => {
   usersAPI.getUsers().then((res) => {
     if (res) {
       users.value = res.data;
+      originalUsers.value = res.data;
     }
   });
 };
@@ -44,15 +47,8 @@ const getData = () => {
 onMounted(() => {
   getData();
 });
-</script>
 
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>
+watch(search, () => {
+  handleSearch();
+});
+</script>
