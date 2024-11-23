@@ -42,7 +42,7 @@
           Website:
           <span
             class="text-[var(--text-muted-color)] hover:text-[var(--secondary-color)]"
-            ><a :href="user.website" target="_blank">{{
+            ><a :href="`https://${user.website}`" target="_blank">{{
               user.website
             }}</a></span
           >
