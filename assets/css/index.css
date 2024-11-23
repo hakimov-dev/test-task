@@ -1,0 +1,5 @@
+@import url(./tailwind.css);
+
+* {
+  transition: all 0.3s linear;
+}
