@@ -1,5 +1,42 @@
 @import url(./tailwind.css);
+@import url(./variables.css);
 
 * {
   transition: all 0.3s linear;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: "Inter", sans-serif; /* Inspired by Tailwind CSS's typeface */
+}
+
+/* Example styles for various elements */
+.card {
+  background-color: var(--card-background-color);
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+
+button {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--secondary-color);
 }
